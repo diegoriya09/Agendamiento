@@ -22,27 +22,36 @@
 
 <body>
     <div class="formulario">
-        <h1>Agendas
-            <br>CondeCar
+        <h1>Registration
+            <br>form
         </h1>
-        <form method="post" th:action="@{/Login}" th:object="${user}">
+        <form method="post" th:action="@{/Register}" th:object="${user}">
             <div class="form-field">
-                <input type="email" th:field="*{email}" placeholder="Email">
-                <i class='bx bxs-user'></i>
+                <input type="text" th:field="*{name}" placeholder="Name">
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                <i class='bx bxs-user-circle'></i>
             </div>
             <div class="form-field">
-                <input ID="txtPassword" type="password" th:field="*{password}" placeholder="Password">
+                <input type="email" th:field="*{email}" placeholder="Email">
+                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                <i class='bx bxs-envelope'></i>
+            </div>
+
+            <div class="form-field">
+                <input ID="txtPassword" type="text" th:field="*{password}" placeholder="Password">
+                <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
                 <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span
                         class="fa fa-eye-slash icon"></span> </button>
                 <i class='bx bxs-lock'></i>
             </div>
+
             <div class="buttons-container">
-                <button>Login</button>
-                <button><a th:href="@{/Register}">Sign Up</a></button>
+                <button>Save</button>
             </div>
         </form>
     </div>
 </body>
+
 <script type="text/javascript">
     function mostrarPassword() {
         var cambio = document.getElementById("txtPassword");

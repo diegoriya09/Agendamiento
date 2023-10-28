@@ -14,7 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.agendamiento.demo.Models.Dao.IUserDao;
 import com.agendamiento.demo.Models.Entity.User;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.Valid;
 
 @Controller
 @SessionAttributes("users")
@@ -27,12 +27,13 @@ public class LoginController {
         User user = new User();
 
         model.addAttribute("user", user);
+        model.addAttribute("title", "Login");
 
         return "Login";
     }
 
     @PostMapping("/Login")
-    public String Validate(@NotEmpty User user, BindingResult bindingResult, SessionStatus status) {
+    public String Validate(@Valid User user, BindingResult bindingResult, SessionStatus status) {
         List<User> lista = UserDao.findAll();
 
         if (!lista.isEmpty()) {
@@ -40,7 +41,7 @@ public class LoginController {
             for (int i = 0; i < lista.size(); i += 1) {
                 if (lista.get(i).getEmail().equals(user.getEmail())
                         && lista.get(i).getPassword().equals(user.getPassword())) {
-                    return "";
+                    return "redirect:/Login";
                 }
             }
         }
