@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -19,6 +20,7 @@ import jakarta.validation.Valid;
 @Controller
 @SessionAttributes("users")
 public class LoginController {
+
     @Autowired // inyectar dependencias, campo, metodo, constructor
     private IUserDao UserDao;
 
@@ -41,7 +43,7 @@ public class LoginController {
             for (int i = 0; i < lista.size(); i += 1) {
                 if (lista.get(i).getEmail().equals(user.getEmail())
                         && lista.get(i).getPassword().equals(user.getPassword())) {
-                    return "redirect:/Login";
+                    return "redirect:/Homepage";
                 }
             }
         }
@@ -51,5 +53,55 @@ public class LoginController {
         }
 
         return "redirect:Login";
+    }
+
+    @GetMapping("/EditProfile")
+    public String create(Model model) {
+
+        User user = new User();
+
+        model.addAttribute("title", "Edit profile");
+        model.addAttribute("user", user);
+
+        return "EditProfile";
+    }
+
+    @PostMapping("/EditProfile")
+    public String save(@Valid User user, BindingResult bindingResult, SessionStatus status) {
+
+        if (bindingResult.hasErrors()) {
+            return "EditProfile";
+        }
+        UserDao.save(user);
+        status.setComplete();
+        return "redirect:Homepage";
+    }
+
+    // @GetMapping("/EditProfile/{id}")
+    // public String edit(@PathVariable(value = "id") Long id, Model model) {
+
+    //     User user = null;
+
+    //     if (id > 0) {
+    //         user = UserDao.findOne(id);
+    //     } else {
+    //         return "redirect:/Login";
+    //     }
+    //     model.addAttribute("title", "Edit");
+    //     model.addAttribute("user", user);
+
+    //     return "EditProfile";
+    // }
+
+    @GetMapping("/SideMenu")
+    public String Menu(Model model) {
+
+        return "SideMenu";
+    }
+
+    @GetMapping("/Homepage")
+    public String home(Model model) {
+
+        return "Homepage";
     }
 }

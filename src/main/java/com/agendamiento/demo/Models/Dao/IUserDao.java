@@ -6,6 +6,7 @@ import com.agendamiento.demo.Models.Entity.User;
 
 public interface IUserDao {
     public List<User> findAll();
+    public List<User> checkEmail(String email);
     public void save(User user);
     public User findOne(Long id);
     public void delete(Long id);

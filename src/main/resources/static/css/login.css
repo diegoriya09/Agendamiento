@@ -11,6 +11,7 @@
 
 .form-field {
     position: relative;
+    margin-bottom: 1rem;
 }
 
 .form-field i {
@@ -58,6 +59,12 @@ body {
     filter: drop-shadow(2px 2px 0 black);
 }
 
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
 button {
     position: relative;
     padding: 10px 20px;
@@ -74,7 +81,7 @@ button {
     -webkit-transition: all 0.2s ease-in;
     -moz-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 button:hover {

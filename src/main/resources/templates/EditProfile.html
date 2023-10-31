@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/sidemenu.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,34 +18,40 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,600&family=Pacifico&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
 </head>
 
 <body>
+
+    <div th:include="Menu/SideMenu :: menuContent"></div>
+
     <div class="formulario">
+        <form th:action="@{/EditProfile}" th:object="${user}" method="post">
+            <h3>Edit profile </h3>
 
-        <h1>Agendas
-            <br>CondeCar
-        </h1>
-
-        <form method="post" th:action="@{/Login}" th:object="${user}">
+            <input type="hidden" th:field="*{id}">
 
             <div class="form-field">
-                <input type="email" th:field="*{email}" placeholder="Email" required>
+                <input type="text" th:field="*{name}" placeholder="Name">
+                <i class='bx bxs-user-circle'></i>
+            </div>
+
+            <div class="form-field">
+                <input type="email" th:field="*{email}" placeholder="Email">
                 <i class='bx bxs-envelope'></i>
             </div>
 
             <div class="form-field">
-                <input type="password" th:field="*{password}" placeholder="Password" required>
+                <input type="text" th:field="*{password}" placeholder="Password">
                 <i class='bx bxs-lock'></i>
             </div>
-            <a th:href="@{/forgotPass}">Forgot Password?</a>
-            <br>
-            <br>
+
             <div class="buttons-container">
-                <button>Login</button>
-                <button><a th:href="@{/Register}">Sign Up</a></button>
+                <button>Save changues</button>
+                <button><a th:href="@{/Homepage}">Cancel</a></button>
             </div>
         </form>
     </div>
 </body>
+
 </html>

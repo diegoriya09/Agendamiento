@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/sidemenu.css}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,600&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div th:include="Menu/SideMenu :: menuContent"></div>
+
+
+    <div class="formulario">
+        
+        <h3>Profile information</h3>
+        <div class="form-field">
+            <input type="text" th:field="*{name}" th:value="${user.name}">
+            <i class='bx bxs-user-circle'></i>
+        </div>
+        
+        <div class="form-field">
+            <input type="email" th:field="*{email}" th:value="${user.email}">
+            <i class='bx bxs-envelope'></i>
+        </div>
+        
+        <div class="form-field">
+            <input type="text" th:field="*{password}" th:value="${user.password}">
+            <i class='bx bxs-lock'></i>
+        </div>  
+    </div>
+
+</body>
+</html>

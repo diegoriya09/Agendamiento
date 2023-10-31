@@ -24,6 +24,14 @@ public class UserDaoImp implements IUserDao {
         return em.createQuery("from User").getResultList();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<User> checkEmail(String email) {    
+            return em.createNativeQuery("select * from users where email=" + email).getResultList();
+        
+    }
+
     @Override // sobrescribiendo un metodo de una super clase (IUsersDao)
     @Transactional
     public void save(User user) {

@@ -15,22 +15,24 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,600&family=Pacifico&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body>
     <div class="formulario">
+
         <h1>Registration
             <br>form
         </h1>
+
         <form method="post" th:action="@{/Register}" th:object="${user}">
+
             <div class="form-field">
                 <input type="text" th:field="*{name}" placeholder="Name">
                 <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                 <i class='bx bxs-user-circle'></i>
             </div>
+
             <div class="form-field">
                 <input type="email" th:field="*{email}" placeholder="Email">
                 <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
@@ -38,31 +40,15 @@
             </div>
 
             <div class="form-field">
-                <input ID="txtPassword" type="text" th:field="*{password}" placeholder="Password">
-                <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
-                <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span
-                        class="fa fa-eye-slash icon"></span> </button>
+                <input type="text" th:field="*{password}" placeholder="Password">
                 <i class='bx bxs-lock'></i>
             </div>
 
             <div class="buttons-container">
                 <button>Save</button>
+                <button><a th:href="@{/Login}">Back</a></button>
             </div>
         </form>
     </div>
 </body>
-
-<script type="text/javascript">
-    function mostrarPassword() {
-        var cambio = document.getElementById("txtPassword");
-        if (cambio.type == "password") {
-            cambio.type = "text";
-            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-        } else {
-            cambio.type = "password";
-            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-        }
-    } 
-</script>
-
 </html>

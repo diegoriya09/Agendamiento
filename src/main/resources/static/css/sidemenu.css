@@ -1,0 +1,157 @@
+/* Establece un estilo base para todos los elementos, eliminando márgenes, rellenos y usando una fuente específica */
+
+* { 
+    margin: 0;                          /* Elimina márgenes predeterminados */
+    padding: 0;                         /* Elimina relleno predeterminado */
+    box-sizing: border-box;             /* Evita el cambio del tamaño total del elemento al agregar relleno o borde */
+    font-family: 'DM Sans', sans-serif; /* Aplica la fuente 'DM Sans' a todos los elementos */
+
+}
+
+/* Define el estilo de la cabecera */
+
+.header {
+    width: 100%;                 /* Ancho al 100% del contenedor */
+    height: 100vh;               /* Altura al 100% del alto de la ventana */
+}
+
+.side-nav {
+    width: 110px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 15px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    transition: width 0.5s;
+
+}
+
+/* Define el estilo del usuario en la barra lateral */
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+/* Oculta el contenido dentro del elemento 'user' */
+
+.user div{
+    display: none;               /* Inicialmente, oculta el contenido dentro de 'user' */
+} 
+
+/* Estilo para el nombre de usuario */
+
+.user h2 {
+    font-size: 15px;             /* Tamaño de fuente del nombre de usuario */
+    font-weight: 600;            /* Grosor de fuente */
+    white-space: nowrap;         /* Evita el desbordamiento de texto en una línea */
+
+}
+
+/* Estilo de la imagen de perfil del usuario (círculo) */
+
+.user-img {
+    width: 40px;                 /* Ancho de la imagen de perfil */
+    height: 40px;                /* Altura de la imagen de perfil (igual para formar un círculo) */
+    border-radius: 50%;          /* Borde redondeado para hacer un círculo */
+    margin: auto;                /* Margen automático para centrar la imagen */
+}
+
+/* Estilo para listas no ordenadas (elimina los marcadores) y ajusta el relleno */
+
+ul {
+    list-style: none;            /* Elimina marcadores de lista */
+    padding: 0 15px;             /* Añade relleno a las listas */
+}
+
+/* Estilo para elementos de lista (li) dentro de la barra lateral */
+
+ul li {
+    margin: 30px 0;              /* Espacio vertical entre elementos de la lista */
+    display: flex;               /* Usa un modelo de caja flexible para los elementos internos */
+    align-items: center;         /* Centra verticalmente los elementos internos */
+    justify-content: center;     /* Espacio entre elementos internos */
+    cursor: pointer;             /* Cambia el cursor al puntero en interacción */
+}
+
+/* Estilo para iconos dentro de elementos de lista */
+
+ul li i{
+    width: 30px;                 /* Ancho de los iconos */
+    margin-right: 0px;           /* Espacio entre el icono y el texto (inicialmente 0 porque esta oculto) */
+    font-size: 1.5rem;
+}
+
+/* Estilo para texto dentro de elementos de lista (inicialmente oculto) */
+
+ul li p {
+    white-space: nowrap;         /* Evita el desbordamiento de texto en una línea */
+    display: none;               /* Inicialmente, oculta el texto */
+}
+
+ul li p a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Estilos que se aplican cuando se pasa el mouse sobre la barra lateral */
+
+.side-nav:hover{
+    width: 250px;                /* Aumenta el ancho de la barra lateral al pasar el mouse */
+}
+
+.side-nav:hover .user div{
+    display: block;              /* Muestra el contenido oculto dentro del elemento 'user' al pasar el mouse */
+}
+
+.side-nav:hover .user{
+    width: 100%;                 /* Aumenta el ancho del elemento 'user' al pasar el mouse */
+    background: rgba(255, 255, 255, 0.2); /* Cambia el fondo al pasar el mouse */
+    backdrop-filter: blur(5px);  /* Aplica un efecto de desenfoque al fondo */
+}
+
+.side-nav:hover .user-img{
+    margin: 0;                   /* Ajusta el margen de la imagen de perfil al pasar el mouse */
+}
+.side-nav:hover ul li p{
+    display: block;              /* Muestra el texto dentro de elementos de lista al pasar el mouse */
+}
+
+.side-nav:hover ul li i{
+    margin-right: 10px;          /* Aumenta el espacio entre el icono y el texto al pasar el mouse */
+}
+
+.side-nav:hover ul li{
+    justify-content: flex-start; /* Cambia la justificación de los elementos de lista al pasar el mouse */
+}
+
+/* Definir variables de color para su posterior uso (root) */
+
+:root {
+    --shakespeare-400: #4caccd;
+    --shakespeare-500: #298cb1;
+    --shakespeare-600: #257195;
+    --shakespeare-700: #245c7a;
+    --shakespeare-800: #254d65;
+    --shakespeare-900: #234256;
+    --shakespeare-950: #122a3a;
+}
+
+body {
+
+    background: linear-gradient(to bottom, var(--shakespeare-400), var(--shakespeare-500),
+            var(--shakespeare-600), var(--shakespeare-700), var(--shakespeare-800), var(--shakespeare-900), var(--shakespeare-950));
+}
