@@ -7,8 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -19,15 +17,15 @@ public class User implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotEmpty
+    
     private String name;
     
-    @NotEmpty
+    
     @Email
     private String email;
     
-    @NotEmpty(message="Minimum five characters")
-    @Size(min=5)
+    
+    
     private String password;
     
     

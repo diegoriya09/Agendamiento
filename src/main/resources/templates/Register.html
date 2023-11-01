@@ -28,24 +28,22 @@
         <form method="post" th:action="@{/Register}" th:object="${user}">
 
             <div class="form-field">
-                <input type="text" th:field="*{name}" placeholder="Name">
-                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                <input type="text" th:field="*{name}" placeholder="Name" required oninvalid="this.setCustomValidity('This field is required')">
                 <i class='bx bxs-user-circle'></i>
             </div>
 
             <div class="form-field">
-                <input type="email" th:field="*{email}" placeholder="Email">
-                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                <input type="email" th:field="*{email}" placeholder="Email" required oninvalid="this.setCustomValidity('This field is required')">
                 <i class='bx bxs-envelope'></i>
             </div>
 
             <div class="form-field">
-                <input type="text" th:field="*{password}" placeholder="Password">
+                <input type="text" th:field="*{password}" placeholder="Password" required oninvalid="this.setCustomValidity('This field is required')">
                 <i class='bx bxs-lock'></i>
             </div>
 
             <div class="buttons-container">
-                <button onclick="return confirm('successfully registered')">Save</button>
+                <button>Save</button>
                 <button><a th:href="@{/Login}">Back</a></button>
             </div>
         </form>
