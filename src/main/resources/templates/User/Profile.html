@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>document</title>
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link rel="stylesheet" th:href="@{/css/sidemenu.css}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +22,29 @@
 <body>
 
     <div th:include="Menu/SideMenu :: menuContent"></div>
-    
+
+
+    <div class="formulario">
+
+        <h3>Profile information</h3>
+        <form action="/Profile">
+            <div class="form-field">
+                <input type="text" name="name" th:value="${user.name}">
+                <i class='bx bxs-user-circle'></i>
+            </div>
+
+            <div class="form-field">
+                <input type="text" name="email" th:value="${user.email}">
+                <i class='bx bxs-envelope'></i>
+            </div>
+
+            <div class="form-field">
+                <input type="text" name="password" th:value="${user.password}">
+                <i class='bx bxs-lock'></i>
+            </div>
+        </form>
+    </div>
+
 </body>
 
 </html>

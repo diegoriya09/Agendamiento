@@ -1,13 +1,13 @@
 package com.agendamiento.demo.Models.Dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.agendamiento.demo.Models.Entity.User;
 
-public interface IUserDao {
-    public List<User> findAll();
-    public List<User> checkEmail(String email);
-    public void save(User user);
-    public User findOne(Long id);
-    public void delete(Long id);
+public interface IUserDao extends JpaRepository<User, Integer>{
+  
+
+    public boolean existsByEmail(String email);
+
+    public User findByEmail(String email);
 }

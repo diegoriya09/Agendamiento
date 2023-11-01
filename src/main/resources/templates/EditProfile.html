@@ -26,23 +26,23 @@
     <div th:include="Menu/SideMenu :: menuContent"></div>
 
     <div class="formulario">
-        <form th:action="@{/EditProfile}" th:object="${user}" method="post">
+        <form action="/EditProfile" method="post">
             <h3>Edit profile </h3>
 
             <input type="hidden" th:field="*{id}">
 
             <div class="form-field">
-                <input type="text" th:field="*{name}" placeholder="Name">
+                <input type="text" name="name" th:value="${name.name}">
                 <i class='bx bxs-user-circle'></i>
             </div>
 
             <div class="form-field">
-                <input type="email" th:field="*{email}" placeholder="Email">
+                <input type="email" name="email" th:value="${name.email}">
                 <i class='bx bxs-envelope'></i>
             </div>
 
             <div class="form-field">
-                <input type="text" th:field="*{password}" placeholder="Password">
+                <input type="text" name="password" th:value="${name.password}">
                 <i class='bx bxs-lock'></i>
             </div>
 
