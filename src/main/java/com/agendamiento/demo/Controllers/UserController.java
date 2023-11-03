@@ -75,4 +75,25 @@ public class UserController {
 
         return "redirect:/user/changePassword";
     }
+
+    @GetMapping("/EditProfile")
+    public String editProfile(Model model) {
+        User user = (User) model.getAttribute("user");
+        model.addAttribute("user", user);
+        return "EditProfile";
+    }
+
+    @PostMapping("/EditProfile")
+    public String saveProfileChanges(@ModelAttribute User user, HttpSession session) {
+        User existingUser = userDao.findByEmail(user.getEmail());
+        if (existingUser != null) {
+            existingUser.setName(user.getName());
+            // Actualiza otros campos según sea necesario
+            userDao.save(existingUser);
+            session.setAttribute("msg", "Profile changes saved successfully");
+        } else {
+            session.setAttribute("msg", "User not found");
+        }
+        return "redirect:/user/EditProfile";
+    }
 }

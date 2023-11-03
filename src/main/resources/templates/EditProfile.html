@@ -5,50 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" th:href="@{/css/EditProfile.css}">
     <link rel="stylesheet" th:href="@{/css/sidemenu.css}">
-    <link rel="stylesheet" th:href="@{/css/login.css}">
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,600&family=Pacifico&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
 </head>
 
 <body>
-
     <div th:include="Menu/SideMenu :: menuContent"></div>
 
     <div class="formulario">
-        <form action="/EditProfile" method="post">
-            <h3>Edit profile </h3>
-
+        <h3>Edit Profile</h3>
+        <form th:action="@{/user/EditProfile}" method="post" th:object="${user}">
             <input type="hidden" th:field="*{id}">
-
             <div class="form-field">
-                <input type="text" name="name" th:value="${name.name}">
+                <input type="text" th:field="*{name}" placeholder="Name">
                 <i class='bx bxs-user-circle'></i>
             </div>
-
             <div class="form-field">
-                <input type="email" name="email" th:value="${name.email}">
+                <input type="email" th:field="*{email}" placeholder="Email">
                 <i class='bx bxs-envelope'></i>
             </div>
-
             <div class="form-field">
-                <input type="text" name="password" th:value="${name.password}">
+                <input type="text" th:field="*{password}" placeholder="Password">
                 <i class='bx bxs-lock'></i>
             </div>
 
             <div class="buttons-container">
-                <button>Save changues</button>
-                <button><a th:href="@{/Homepage}">Cancel</a></button>
+                <button type="submit">Save Changes</button>
+                <button><a th:href="@{/user/}">Cancel</a></button>
             </div>
         </form>
     </div>

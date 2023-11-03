@@ -47,6 +47,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/user/")).csrf(csrf -> csrf.disable());
 
     }
-    
-    
 }

@@ -12,6 +12,7 @@
 .form-field {
     position: relative;
     margin-bottom: 1rem;
+    left: 14%;
 }
 
 .form-field i {
@@ -21,6 +22,7 @@
     left: 0.5rem;
     opacity: 0.8;
     font-size: 1.5em;
+    margin-left: -6.9rem;
 }
 
 input {
@@ -31,6 +33,7 @@ input {
     opacity: .8;
     font-family: 'DM Sans', sans-serif;
     padding-left: 2.5rem;
+    margin-left: -6.9rem;
 }
 
 :root {
@@ -49,32 +52,28 @@ body {
             var(--shakespeare-600), var(--shakespeare-700), var(--shakespeare-800), var(--shakespeare-900), var(--shakespeare-950));
 }
 
-.formulario h1 {
-    font-family: 'Pacifico', cursive;
-    text-align: center;
-    font-size: 4em;
-    color: white;
-    padding-top: 2rem;
-    line-height: 1.5;
-    filter: drop-shadow(2px 2px 0 black);
+h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gagalin', sans-serif;
+    font-size: 1.2em;
+    padding-left: 3rem;
+    background-color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50rem;
+    padding: 1rem;
+    margin-top: -25rem;
+    margin-left: -8.5rem;  
 }
 
-.formulario .form{
-    font-family: 'DM Sans', sans-serif;
-    color: white;
-    margin-left: 3.5rem;
-}
 
 .buttons-container{
     display: flex;
     justify-content: center;
     gap: 0.3rem;
-    margin-top: 1rem;
-}
-
-.buttons-container a{
-    text-decoration: none;
-    color: white;
+    margin-left: -7.5rem;
 }
 
 button {
@@ -104,6 +103,10 @@ button:hover {
     transition: all 0.2s ease-out;
 }
 
+button:hover a{
+    color: white;
+}
+
 button:hover::before {
     -webkit-animation: sh02 0.5s 0s linear;
     -moz-animation: sh02 0.5s 0s linear;
@@ -126,12 +129,6 @@ button::before {
     -ms-transform: skewX(-20deg);
     -o-transform: skewX(-20deg);
     transform: skewX(-20deg);
-}
-
-button:hover a{
-    color: white;
-    
-
 }
 
 @keyframes sh02 {
@@ -157,22 +154,9 @@ button:active {
     transition: box-shadow 0.2s ease-in;
 }
 
-.formulario .alert-danger {
-    font-family: 'DM Sans', sans-serif ;
-    background: pink; 
-    color: black; 
-    border-radius: 5px;
-    padding: 4px;
-    margin-top: -2rem;
-}
-
-.formulario .alert-success {
-    font-family: 'DM Sans', sans-serif ;
-    background: rgb(12, 161, 119); 
-    color: black; 
-    border-radius: 5px;
-    padding: 4px;
-    margin-top: -2rem;
+button a{
+    text-decoration: none;
+    color: white;
 }
 
 .formulario .text-center.fs-4{
@@ -181,6 +165,7 @@ button:active {
     color: black; 
     border-radius: 5px;
     padding: 4px;
-    margin-top: -2rem;
-    margin-left: 0rem;
+    margin-top: 0rem;
+    margin-left: -8rem;
 }
+

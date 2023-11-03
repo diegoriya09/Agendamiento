@@ -15,8 +15,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,600&family=Pacifico&display=swap"
         rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -25,10 +23,10 @@
         <h1>Agendas
             <br>CondeCar
         </h1>
+        
+        <div th:if="${param.error}" class="alert-danger">Invalid email & Password</div>
 
-        <div th:if="${param.error}" class="alert-danger">Invalid Email & Password</div>
-
-        <div th:if="${param.logout}" class="alert-success">Logout Successfully</div>
+        <div th:if="${param.logout}" class="alert-success">Logout successfully</div>
 
         <form action="/login" method="post">
 
@@ -41,9 +39,9 @@
                 <input type="password" name="password" placeholder="Password">
                 <i class='bx bxs-lock'></i>
             </div>
-            <a class="form" href="">Forgot Password?</a>
-            <br>
-            <br>
+
+            <a class="form" href="">Forgot password?</a>
+
             <div class="buttons-container">
                 <button>Login</button>
                 <button><a href="Register">Sign Up</a></button>
@@ -51,9 +49,6 @@
         </form>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
+
 </html>
