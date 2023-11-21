@@ -58,7 +58,7 @@ public class LoginController {
             if (userDtls != null) {
                 session.setAttribute("msg", "User register successfully");
             } else {
-                session.setAttribute("msg", "Something wrong");
+                session.setAttribute("msg3", "Something wrong, try again");
             }
         }
         return "redirect:/Register";

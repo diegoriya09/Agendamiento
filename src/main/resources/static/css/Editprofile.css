@@ -165,4 +165,24 @@ h3 {
     margin-left: -9rem;  
 }
 
+.formulario .text-center.fs-6{
+    font-family: 'DM Sans', sans-serif ;
+    background: rgb(12, 161, 119); 
+    color: black; 
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: 0rem;
+    margin-left: -8rem;
+}
+
+.formulario .text-center.fs-7{
+    font-family: 'DM Sans', sans-serif ;
+    background: pink; 
+    color: black; 
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: 0rem;
+    margin-left: -8rem;
+}
+
 

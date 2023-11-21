@@ -24,19 +24,28 @@
 
     <div class="formulario">
         <h3>Edit Profile</h3>
+
+        <th:block th:if="${session.msg}">
+            <p class="text-center fs-6">[[${session.msg}]]</p>
+            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+        </th:block>
+
+        <th:block th:if="${session.msg3}">
+            <p class="text-center fs-7">[[${session.msg3}]]</p>
+            <th:block th:text="${#session.removeAttribute('msg3')}"></th:block>
+        </th:block>
+
         <form th:action="@{/user/EditProfile}" method="post" th:object="${user}">
+
             <input type="hidden" th:field="*{id}">
             <div class="form-field">
                 <input type="text" th:field="*{name}" placeholder="Name">
                 <i class='bx bxs-user-circle'></i>
             </div>
+
             <div class="form-field">
                 <input type="email" th:field="*{email}" placeholder="Email">
                 <i class='bx bxs-envelope'></i>
-            </div>
-            <div class="form-field">
-                <input type="text" th:field="*{password}" placeholder="Password">
-                <i class='bx bxs-lock'></i>
             </div>
 
             <div class="buttons-container">
@@ -46,5 +55,4 @@
         </form>
     </div>
 </body>
-
 </html>

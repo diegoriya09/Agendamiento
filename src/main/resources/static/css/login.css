@@ -177,10 +177,19 @@ button:active {
 
 .formulario .text-center.fs-4{
     font-family: 'DM Sans', sans-serif ;
-    background: pink; 
+    background: rgb(12, 161, 119);
     color: black; 
     border-radius: 5px;
     padding: 4px;
     margin-top: -2rem;
     margin-left: 0rem;
+}
+
+.formulario .text-center.fs-5 {
+    font-family: 'DM Sans', sans-serif ;
+    background: pink; 
+    color: black; 
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: -2rem;
 }

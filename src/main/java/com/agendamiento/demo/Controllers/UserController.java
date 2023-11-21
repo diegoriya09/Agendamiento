@@ -45,6 +45,11 @@ public class UserController {
         return "User/Profile";
     }
 
+    @GetMapping("/Calendar")
+    public String calendar() {
+        return "Calendar";
+    }
+
     @GetMapping("/changePassword")
     public String loadChangePassword() {
         return "User/changePassword";
@@ -58,19 +63,19 @@ public class UserController {
         User loginUser = userDao.findByEmail(email);
 
         boolean f = passwordEncode.matches(oldPass, loginUser.getPassword());
-        
-        if(f){
+
+        if (f) {
 
             loginUser.setPassword(passwordEncode.encode(newPass));
             User updatePasswordUser = userDao.save(loginUser);
 
-            if(updatePasswordUser != null){
+            if (updatePasswordUser != null) {
                 session.setAttribute("msg", "Password change success");
             } else {
-                session.setAttribute("msg", "Something wrong");
+                session.setAttribute("msg2", "Something wrong"); // No coje este msj, arreglar
             }
         } else {
-            session.setAttribute("msg", "Old password incorrect");
+            session.setAttribute("msg2", "Old password incorrect");
         }
 
         return "redirect:/user/changePassword";
@@ -92,7 +97,7 @@ public class UserController {
             userDao.save(existingUser);
             session.setAttribute("msg", "Profile changes saved successfully");
         } else {
-            session.setAttribute("msg", "User not found");
+            session.setAttribute("msg3", "User not found");
         }
         return "redirect:/user/EditProfile";
     }
