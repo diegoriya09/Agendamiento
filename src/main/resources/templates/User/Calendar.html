@@ -59,8 +59,8 @@
         </div>
         <div class="right">
             <div class="today-date">
-                <div class="event-day">Wed</div>
-                <div class="event-date">13 November 2022</div>
+                <div class="event-day"></div>
+                <div class="event-date"></div>
             </div>
             <div class="events">
                 <!-- añadiremos eventos con js -->
@@ -71,20 +71,21 @@
                     <i class="fas fa-times close"></i>
                 </div>
                 <div class="add-event-body">
-                    <form action="/events/save" method="post">
+                    <form action="createEvent" method="post">
                         <div class="add-event-input">
-                            <input type="text" placeholder="Event name" class="event-name" />
+                            <input type="text" name="eventName" placeholder="Event name" class="event-name">
                         </div>
                         <div class="add-event-input">
-                            <input type="text" placeholder="Event time from" class="event-time-from" />
+                            <input type="text" name="eventTimeFrom" placeholder="Event time from" class="event-time-from">
                         </div>
                         <div class="add-event-input">
-                            <input type="text" placeholder="Event time to" class="event-time-to" />
+                            <input type="text" name="eventTimeTo" placeholder="Event time to" class="event-time-to">
                         </div>
+                        
                     </form>
-                </div>                
-                <div class="add-event-footer">
-                    <button class="add-event-btn">Add event</button>
+                    <div class="add-event-footer">
+                        <button type="submit" class="add-event-btn">Add event</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,5 +97,7 @@
     <script th:src="@{/script.js}"></script>
 
 </body>
+
+
 
 </html>

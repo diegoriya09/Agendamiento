@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.agendamiento.demo.Models.Dao.IUserDao;
+import com.agendamiento.demo.Models.Entity.Event;
 import com.agendamiento.demo.Models.Entity.User;
+import com.agendamiento.demo.Service.EventService;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +27,9 @@ public class UserController {
 
     @Autowired
     private IUserDao userDao;
+
+    @Autowired
+    private EventService eventService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncode;
@@ -47,7 +54,20 @@ public class UserController {
 
     @GetMapping("/Calendar")
     public String calendar() {
-        return "Calendar";
+        return "User/Calendar";
+    }
+
+    @PostMapping("/createEvent")
+    public String saveEvent(@Validated Event event, BindingResult bindingResult, Model model) {  
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("event", event);
+            System.out.println(event);
+            return "User/Calendar";
+        } 
+
+        eventService.createEvent(event);
+        return "redirect:/user/Calendar";
     }
 
     @GetMapping("/changePassword")
@@ -72,10 +92,10 @@ public class UserController {
             if (updatePasswordUser != null) {
                 session.setAttribute("msg", "Password change success");
             } else {
-                session.setAttribute("msg2", "Something wrong"); // No coje este msj, arreglar
+                session.setAttribute("msg2", "Something wrong");
             }
         } else {
-            session.setAttribute("msg2", "Old password incorrect");
+            session.setAttribute("msg3", "Old password incorrect");
         }
 
         return "redirect:/user/changePassword";

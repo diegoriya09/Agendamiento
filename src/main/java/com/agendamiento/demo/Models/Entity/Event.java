@@ -1,41 +1,44 @@
 package com.agendamiento.demo.Models.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+
+import lombok.Data;
+
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @NotBlank
+    @Column(name="event_name")
     private String eventName;
+
+    @NotBlank
+    @Column(name="event_time_from")
     private String eventTimeFrom;
+
+    @NotBlank
+    @Column(name="event_time_to")
     private String eventTimeTo;
 
     @ManyToOne
     private User user;
 
-    public Event() {
-
-    }
-
-    public Event(String eventName, String eventTimeFrom, String eventTimeTo, User user) {
-        this.eventName = eventName;
-        this.eventTimeFrom = eventTimeFrom;
-        this.eventTimeTo = eventTimeTo;
-        this.user = user;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

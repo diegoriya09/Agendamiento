@@ -205,10 +205,11 @@ function gotoDate() {
 
 const addEventBtn = document.querySelector(".add-event"),
     addEventContainer = document.querySelector(".add-event-wrapper"),
-    addEventCloseBtn = document.querySelector(".close"),
-    addEventTitle = document.querySelector(".event-name"),
-    addEventFrom = document.querySelector(".event-time-from"),
-    addEventTo = document.querySelector(".event-time-to");
+    addEventCloseBtn = document.querySelector(".close");
+const addEventTitle = document.querySelector(".event-name");
+const addEventFrom = document.querySelector(".event-time-from");
+const addEventTo = document.querySelector(".event-time-to");
+
 
 addEventBtn.addEventListener("click", () => {
     addEventContainer.classList.toggle("active");
@@ -237,10 +238,6 @@ addEventFrom.addEventListener("input", (e) => {
     if (addEventFrom.value.length > 5) {
         addEventFrom.value = addEventFrom.value.slice(0, 5);
     }
-});
-
-addEventTitle.addEventListener("input", (e) => {
-    addEventTitle.value = addEventTitle.value.slice(0, 50);
 });
 
 addEventTo.addEventListener("input", (e) => {
@@ -364,6 +361,24 @@ addEventSubmit.addEventListener("click", () => {
         title: evenTitle,
         time: timeFrom + " - " + timeTo,
     };
+
+    fetch('/createEvent', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: evenTitle,
+            time: timeFrom + " - " + timeTo,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Éxito:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
     let eventAdded = false;
 

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.*;
 
 import lombok.Data;
 
@@ -18,10 +19,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "It cant be empty")
     private String name;
 
+    @Email
     private String email;
 
+    @NotBlank(message = "It cant be empty")
     private String password;
 
     private String role;

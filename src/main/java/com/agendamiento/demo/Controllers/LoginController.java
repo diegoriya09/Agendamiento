@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,11 +46,16 @@ public class LoginController {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute User user, HttpSession session) {
-
-        System.out.println(user);
+    public String createUser(@Validated User user, BindingResult bindingResult, HttpSession session, Model model) {
 
         boolean f = userService.checkEmail(user.getEmail());
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("user", user);
+            session.setAttribute("msg4", "Please, complete the fields correctly");
+            return "Register";
+        }
+
 
         if (f) {
             session.setAttribute("msg", "Email id already exists");
