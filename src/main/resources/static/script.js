@@ -309,9 +309,8 @@ function updateEvents(date) {
                     <div class = "title">
                       <i class = "fas fa-circle"></i>
                       <h3 class = "event-title">${event.title}</h3>
-                    </div>
-                    <div class = "event-time">
-                      <span class = "event-time">${event.time}</span>
+                      <h2 class = "event-title">${event.timeFrom}</h3>
+                      <h2 class = "event-title">${event.timeTo}</h3>
                     </div>
                 </div>
                 `;
@@ -329,12 +328,19 @@ function updateEvents(date) {
     eventsContainer.innerHTML = events;
 }
 
-addEventSubmit.addEventListener("click", () => {
-    const evenTitle = addEventTitle.value;
-    const eventTimeFrom = addEventFrom.value;
-    const eventTimeTo = addEventTo.value;
+function submitEventForm(event) {
 
-    if (evenTitle == "" || eventTimeFrom == "" || eventTimeTo == "") {
+    event.preventDefault();
+
+    const addEventTitle = document.querySelector(".event-name");
+    const addEventFrom = document.querySelector(".event-time-from");
+    const addEventTo = document.querySelector(".event-time-to");
+
+    const eventTitle = addEventTitle.value.trim();
+    const eventTimeFrom = addEventFrom.value.trim();
+    const eventTimeTo = addEventTo.value.trim();
+
+    if (eventTitle == "" || eventTimeFrom == "" || eventTimeTo == "") {
         alert("Please fill all the fields");
         return;
     }
@@ -354,27 +360,29 @@ addEventSubmit.addEventListener("click", () => {
         return;
     }
 
-    const timeFrom = convertTime(eventTimeFrom);
-    const timeTo = convertTime(eventTimeTo);
-
     const newEvent = {
-        title: evenTitle,
-        time: timeFrom + " - " + timeTo,
+        eventTitle: addEventTitle.value,
+        eventTimeFrom: addEventFrom.value,
+        eventTimeTo: addEventTo.value
     };
 
-    fetch('/createEvent', {
+    fetch('/user/createEvent', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            title: evenTitle,
-            time: timeFrom + " - " + timeTo,
-        })
+        body: JSON.stringify(newEvent)
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Éxito:', data);
+
+            updateEvents(activeDay);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -415,7 +423,7 @@ addEventSubmit.addEventListener("click", () => {
     if (!activeDayElem.classList.add("event")) {
         activeDayElem.classList.add("event");
     }
-});
+};
 
 function convertTime(time) {
     let timeArr = time.split(":");

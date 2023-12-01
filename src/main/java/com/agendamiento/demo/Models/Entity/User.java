@@ -1,12 +1,9 @@
 package com.agendamiento.demo.Models.Entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 
 import lombok.Data;
@@ -29,9 +26,6 @@ public class User {
     private String password;
 
     private String role;
-
-    @OneToMany(mappedBy = "user")
-    private List<Event> events;
 
     public Long getId() {
         return id;

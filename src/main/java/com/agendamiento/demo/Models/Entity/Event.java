@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -19,20 +18,17 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+   @NotBlank
     @Column(name="event_name")
     private String eventName;
 
-    @NotBlank
+   @NotBlank
     @Column(name="event_time_from")
     private String eventTimeFrom;
 
-    @NotBlank
+   @NotBlank
     @Column(name="event_time_to")
     private String eventTimeTo;
-
-    @ManyToOne
-    private User user;
 
     public Long getId() {
         return id;
@@ -64,14 +60,6 @@ public class Event {
 
     public void setEventTimeTo(String eventTimeTo) {
         this.eventTimeTo = eventTimeTo;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
 }

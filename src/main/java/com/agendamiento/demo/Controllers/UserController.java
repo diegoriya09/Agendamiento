@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,17 +60,15 @@ public class UserController {
     }
 
     @PostMapping("/createEvent")
-    public String saveEvent(@Validated Event event, BindingResult bindingResult, Model model) {  
-
-        if(bindingResult.hasErrors()){
-            model.addAttribute("event", event);
-            System.out.println(event);
-            return "User/Calendar";
-        } 
-
-        eventService.createEvent(event);
-        return "redirect:/user/Calendar";
+public ResponseEntity<String> createEvent(@Validated @RequestBody Event event, BindingResult bindingResult) {  
+    if(bindingResult.hasErrors()){
+        // Puedes manejar errores de validación y devolver una respuesta adecuada si es necesario
+        return ResponseEntity.badRequest().body("Error de validación");
     }
+
+    eventService.createEvent(event);
+    return ResponseEntity.ok("Evento creado exitosamente");
+}
 
     @GetMapping("/changePassword")
     public String loadChangePassword() {
